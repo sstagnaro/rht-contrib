@@ -12,7 +12,7 @@ One awesome resource I use to prepare my lecture and live demo is the [**Buildah
 
 ## Guided Excercise
 
-In this directory you can find two Bash scripts that are intended to replicate the very same [Dockerfile](./Dockerfile) prestented in the dockerfile-create guided excercise of DO180, but using *Buildah native commands* instead.
+In this directory you can find two Bash scripts that are intended to replicate the very same [Dockerfile](./Dockerfile) prestented in the **dockerfile-create** guided excercise of DO180, but using *Buildah native commands* instead.
 
 The first script, [buildah.sh](./buildah.sh), is a simplest 1:1 conversion from Dockerfile.
 
