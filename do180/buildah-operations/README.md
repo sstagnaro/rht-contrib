@@ -14,8 +14,8 @@ One awesome resource I use to prepare my lecture and live demo is the [**Buildah
 
 In this directory you can find two Bash scripts that are intended to replicate the very same [Dockerfile](./Dockerfile) prestented in the **dockerfile-create** guided excercise of DO180, but using *Buildah native commands* instead.
 
-The first script, [buildah.sh](./buildah.sh), is a simplest 1:1 conversion from Dockerfile.
+The first script, [buildah.sh](./buildah.sh), is a simplest 1:1 conversion from the Dockerfile.
 
-In the second script, [buildah_mount.sh](./buildah_mount.sh), I tried to demostrate the power of Buildah, mounting the container overlay on the host and then perform actions like packages installation from the local `yum` instance.
+In the second script, [buildah_mount.sh](./buildah_mount.sh), I tried to demostrate the power of Buildah, mounting the container overlay on the host and then perform actions like packages installation from the local `yum` instance directly.
 
 If you have time, you can run all the three builds (the Dockerfile and the two scripts) alongside with `time` and compare the results.
