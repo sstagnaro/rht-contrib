@@ -16,15 +16,19 @@ sudo podman run -d --name wp -e WORDPRESS_DB_HOST=127.0.0.1:3306 -e WORDPRESS_DB
 
 set +e
 
-for wp_retries in {1..9}; do
+for wp_retries in {1..20}; do
 
   wp_return=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/wp-admin/install.php)
 
   if [ $wp_return == 200 ]; then
     echo -e "\nWordPress instance ready at http://127.0.0.1\n"
-    break
+    exit 0
   fi
 
   echo "Waiting for WordPress to come up..."
   sleep 2
+
 done
+
+>&2 echo -e "\nERROR: WordPress instance not ready. Check pods, containers and volumes\n"
+exit 1
