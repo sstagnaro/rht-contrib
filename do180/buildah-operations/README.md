@@ -6,11 +6,17 @@ Buildah can create an image from a Dockerfile — or a more standard Containerfi
 
 ## Buildah native commands
 
-With Buildah you can directly interact with the temporary container used for the build process. In the lecture, I start showing how to create a working-container with `buildah from scratch` command and then perform customizations with `buildah run`, `buildah config` and finally closing up with `buildah commit`.
+With Buildah you can directly interact with the temporary container used for the build process.
 
-One awesome resource I use to prepare my lecture and live demo is the [**Buildah Tutorial 1**](https://github.com/containers/buildah/blob/master/docs/tutorials/01-intro.md). Even [Creating small containers with Buildah](https://opensource.com/article/18/5/containers-buildah) from Tom Sweeney and [Getting started with Buildah](https://opensource.com/article/18/6/getting-started-buildah) from Chris Collins are great blogposts.
+... add **benefits** here ...
 
-## Guided Excercise
+## Tutorial
+
+In this tutorial, I start showing how to create a working-container with `buildah from scratch` command and then perform customizations with `buildah run`, `buildah config` and finally closing up with `buildah commit`.
+
+... add **tutorial** here ...
+
+## Practice
 
 In this directory you can find two Bash scripts that are intended to replicate the very same [Dockerfile](./Dockerfile) prestented in the **dockerfile-create** guided excercise of DO180, but using *Buildah native commands* instead.
 
@@ -19,3 +25,7 @@ The first script, [buildah.sh](./buildah.sh), is a simplest 1:1 conversion from 
 In the second script, [buildah_mount.sh](./buildah_mount.sh), I tried to demostrate the power of Buildah, mounting the container overlay on the host and then perform actions like packages installation from the local `yum` instance directly.
 
 If you have time, you can run all the three builds (the Dockerfile and the two scripts) alongside with `time` and compare the results.
+
+## Further readings
+
+One awesome resource I use to prepare my lecture and live demo is the [**Buildah Tutorial 1**](https://github.com/containers/buildah/blob/master/docs/tutorials/01-intro.md). Even [Creating small containers with Buildah](https://opensource.com/article/18/5/containers-buildah) by Tom Sweeney and [Getting started with Buildah](https://opensource.com/article/18/6/getting-started-buildah) by Chris Collins are great articles.

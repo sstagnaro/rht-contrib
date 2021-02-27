@@ -5,4 +5,4 @@ Here it's the extra material I've prepared so far and that I'm currently using i
 
 - [buildah-operations](buildah-operations), as an additional paragraph in ch. 5, **Creating Custom Container Images**
 
-All example scripts are intended to run on the **workstation** vm without modifications.
+All example scripts are intended to run on the **workstation** vm without modifications on system config files.
