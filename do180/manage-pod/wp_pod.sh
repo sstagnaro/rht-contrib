@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# A simple script to test Podman pods
+# Author: Stefano Stagnaro <sstagnar@redhat.com>
 
 # A simple readiness function accepting a name and a probe
 readiness() {
