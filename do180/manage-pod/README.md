@@ -21,7 +21,7 @@ POD ID        NAME    STATUS   CREATED        INFRA ID      # OF CONTAINERS
 ea8fa71f2aa4  wp_pod  Created  3 seconds ago  c6c66510db7a  1
 ```
 
-We notice that our pod has been created and there is an infra container inside. The purpose of the infra container is to maintain the network namespace of the pod and allow incoming connections to the other containers:
+We notice that our pod has been created and there is an infra container inside. The purpose of the infra container is to maintain the network namespace of the pod and allow incoming connections to the other containers. It does nothing but it let the pod live even if other containers are stopped. 
 
 ```
 $ $ sudo podman ps --pod -a
@@ -29,7 +29,7 @@ CONTAINER ID  IMAGE                 CREATED         STATUS   PORTS              
 6e2a42529c8a  k8s.gcr.io/pause:3.2  24 seconds ago  Created  127.0.0.1:80->80/tcp  c5340a2dc114-infra  c5340a2dc114  wp_pod
 ```
 
-The first container we are going to create is the database. It's a simple `podman run` but now we need to specify the pod name with `--pod wp_pod`.
+The first container we are going to create is the database. It's a simple `podman run` but now we need to specify the pod name with `--pod wp_pod`:
 
 ```
 $ sudo podman run -d --name db \
@@ -47,12 +47,12 @@ Writing manifest to image destination
 Storing signatures
 0385e9628b5e349b931c138fd550d7c40cb78a7ed2ec8a4a7a71deace805a9ea
 ```
-We can briefly test the database readiness:
+We can briefly test the database readiness checking the exit status of a simple query:
 ```
-$ sudo podman logs db | grep 'ready for connections'
-2021-02-27T16:49:50.992272Z 0 [Note] /opt/rh/rh-mysql57/root/usr/libexec/mysqld: ready for connections.
+$ sudo podman exec db bash -c 'mysql -u root -e "SELECT 1" &> /dev/null'; echo $?
+0
 ```
-and finally create the WordPress container. Notice that the environment variable `WORDPRESS_DB_HOST` is pointing to port 3306 on localhost. This because containers in the same pod shares the same network namespace, thus they refer to each other on a certain port on localhost. 
+and finally create the WordPress container. Notice that the environment variable `WORDPRESS_DB_HOST` is pointing to port 3306 on 127.0.0.1 address. This because containers in the same pod shares the same network namespace, thus they refer to each other on a certain port on localhost. 
 
 ```
 $ sudo podman run -d --name wp \
@@ -72,7 +72,7 @@ c24a1dca93dd4a6770cd5b55eb8fcc33a5b35074b75370857aa92b7f10a0f4f1
 
 ```
 
-We can also test if WordPress is up and running:
+We can also test if WordPress is up and running. Recall that pod port 80 has been forwarded to our workstation's localhost address:
 
 ```
 $ curl -I http://127.0.0.1/wp-admin/install.php
